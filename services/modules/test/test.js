@@ -12,10 +12,10 @@ var test = function(obj){
 	};
 	return res;
 };
-var testAsync = function(obj){    	
+var testAsync = function(obj1, obj2){    	
 	var deferred = q.defer();	
 	var res = {
-		Data : "test Async",
+		Data : "test Async " + obj1 +" & "+ obj2,
 		Message: "",
 		Status: 1
 	};

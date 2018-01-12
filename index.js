@@ -25,7 +25,7 @@ app.get("/", function (req, res){
 	res.sendFile("/index.html");
 });
 
-app.get("/api/:service/:action/:obj", controller.doget);
+app.get("/api/:service/:action", controller.doget);
 app.post("/api/:service/:action", controller.dopost);
 
 

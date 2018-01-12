@@ -5,14 +5,16 @@
 
 var q = require('q');
 var test = require("./modules/test/test");
+var _ = require('underscore');
 module.exports =
 {
-	doaction: function(service, action, obj){
+	doaction: function(service, action, ...obj){
+		console.log("service call doaction " + service + "/" + action);
 		var deferred = q.defer();
-		try {
-			console.log("service call doaction " + service + "/" + action + "/" + obj);
-			var ret = eval(service +'["' + action + '"](obj)');		
+		try{
+			var ret = eval(service +'["' + action + '"](...obj)');		
 			deferred.resolve(ret);	
+			
 		}
 		catch(ex){
 			deferred.reject(ex);

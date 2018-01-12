@@ -4,16 +4,22 @@
  */
 var services = require("./../services/service");
 var version = "Add version when return data" + "" ;
-
+var _ = require('underscore');
 var doget = function(req, res){
-    res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	
 	var service = req.params.service.toLowerCase();
 	var action = req.params.action;
-	var obj = req.params.obj;		
 
-	console.log("controller call doget " + service + "/" + action + "/" + obj);			
-	services["doaction"](service, action, obj).then(function (data) {
-		console.log("controller get from doget async");			
+	var queries = Object.getOwnPropertyNames(req.query);
+	var values = [];
+	_.each(queries, function(query){
+		var value = req.query[query];
+		values.push(value);
+	});
+
+	console.log("controller call doget " + service + "/" + action);			
+	services["doaction"](service, action, ...values).then(function (data) {					
 		res.status(200).send(data);
 	}).catch(function (error) {
 		var result = {
@@ -26,14 +32,13 @@ var doget = function(req, res){
 };
 var dopost = function(req, res){
 	res.setHeader('Access-Control-Allow-Origin','*');	
-	console.log("controller call dopostv1 " + req);
+	
 	var service = req.params.service.toLowerCase();
 	var action = req.params.action;
 	var obj = req.body;		
 
-	console.log("controller call dopostv1 async");
-	services["doaction"](service, action, obj).then(function (data) {		    
-		console.log("controller get from dopostv1 async");
+	console.log("controller call dopost " + service + "/" + action);	
+	services["doaction"](service, action, obj).then(function (data) {		    		
 		res.status(200).send(data);
 	}).catch(function (error) {
 		var result = {
