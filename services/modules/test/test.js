@@ -5,7 +5,12 @@
 var q = require('q');
 
 var test = function(obj){
-	return {msg:"test success", obj: obj} ;
+	var res = {
+		Data : "test",
+		Message: "",
+		Status: 1
+	};
+	return res;
 };
 var testAsync = function(obj){    	
 	var deferred = q.defer();	
