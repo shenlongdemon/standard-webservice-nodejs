@@ -26,6 +26,6 @@ var testAsync = function(obj1, obj2){
 };
 module.exports =
 {	
-	test : test, // call by [host].com/api/test/test/1
-	testAsync : testAsync
+	test : test, // call by [host].com/api/test/test?obj=1
+	testAsync : testAsync  // call by [host].com/api/test/testAsync?obj1=1&obj2=2
 }
