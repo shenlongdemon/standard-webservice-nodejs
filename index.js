@@ -2,7 +2,8 @@ const http         = require('http'),
 fs           = require('fs'),
 path         = require('path'),
 express 	   = require("express"),
-bodyParser   =  require("body-parser"),      
+compression  = require('compression'),
+bodyParser   = require("body-parser"),      
 env          = process.env,
 controller   = require("./controllers/controller")
 ;
@@ -12,7 +13,7 @@ var app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(bodyParser.json({ limit: '5mb' }));
-
+app.use(compression());
 
 app.set('port', (process.env.PORT || 5000));
 
