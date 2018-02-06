@@ -6,7 +6,7 @@ var q = require('q');
 
 var test = function(obj){
 	var res = {
-		Data : "test",
+		Data : obj,
 		Message: "",
 		Status: 1
 	};
